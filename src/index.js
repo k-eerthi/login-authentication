@@ -27,7 +27,7 @@ app.post("/signup", async (req, res) => {
 
     const data = {
     name: req.body.username,
-    password: req.body.password
+    password: await bcrypt.hash(req.body.password, 10)
     }
     //check if user already exists in the databade
     const existingUser =await collection.findOne({name: data.name});
